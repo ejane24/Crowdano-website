@@ -51,7 +51,7 @@
 	  function getAddress() {
 	    dbRef.child("Series2").child("number").get().then((snapshot) => {
 	      if (snapshot.exists()) {
-	        if(snapshot.val() < 75) {
+	        if(snapshot.val() < 600) {
 		  dbRef.child("Series2").child("payment_address").get().then((snapshot2) => {
 		    document.getElementById("Address").innerHTML = snapshot2.val();
 		  });
