@@ -26,6 +26,46 @@
         <link rel="stylesheet" href="css/responsive.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/popup.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+
+        <script>
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyDHC19JuQqwUmNW0CvOLknqFJcGLGmLU9k",
+            authDomain: "cornnfriends.firebaseapp.com",
+            databaseURL: "https://cornnfriends-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "cornnfriends",
+            storageBucket: "cornnfriends.appspot.com",
+            messagingSenderId: "594358338100",
+            appId: "1:594358338100:web:b29f0b1547163955bd0061"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+
+          
+	  var db = firebase.database();
+          const dbRef = db.ref();
+
+	  function getAddress() {
+	    dbRef.child("Series2").child("number").get().then((snapshot) => {
+	      if (snapshot.exists()) {
+	        if(snapshot.val() < 75) {
+		  dbRef.child("Series2").child("payment_address").get().then((snapshot2) => {
+		    document.getElementById("Address").innerHTML = snapshot2.val();
+		  });
+		} else {
+		  document.getElementById("Address").innerHTML = "Sold Out!";
+		  document.getElementById("Address").style = "color:red"
+		}
+	      } else {
+		document.getElementById("Address").innerHTML = "Uh Oh, Something went wrong! Please refresh and try again!";
+		console.log("No data available");
+	      }
+	    });
+	  }
+        </script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -101,7 +141,7 @@
             <h2>Address:</h2>
           </div>
             <div class="row">
-              <h3>addr1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h3>
+              <h3 id="Address">addr1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h3>
             </div>
           <div class="heading">
             <h2>Amount:</h2>
