@@ -120,7 +120,7 @@
 							</span>
 						</h1>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non sapien et quam tempus mollis et eget ipsum.</p>
-						<button onclick="popupFunction()" id="popup-open" class="hero-btn">Buy</button>
+						<button onclick="popupFunction();getAddress()" id="popup-open" class="hero-btn">Buy</button>
 					                    </div>
                            </div>
                         </div>
@@ -135,7 +135,7 @@
     <!--Popup Start-->
 
       <div class="popup" id="popup">
-        <div onclick="popupFunction()" id="popup-overlay" class="popup-overlay"></div>
+        <div onclick="popupFunction();getAddress()" id="popup-overlay" class="popup-overlay"></div>
         <div class="content">
           <div class="heading">
             <h2>Address:</h2>
